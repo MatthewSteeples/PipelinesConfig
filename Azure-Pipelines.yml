@@ -1,0 +1,16 @@
+pool:
+  name: Azure Pipelines
+  
+steps:
+- powershell: |
+   Get-ComputerInfo
+   Get-WmiObject -Class Win32_ComputerSystem
+   Get-WmiObject win32_processor
+   Get-WmiObject -Class Win32_LogicalDisk 
+  displayName: 'Computer Info'
+
+- powershell: 'Get-WmiObject win32_product'
+  displayName: 'Installed Items'
+
+- powershell: 'gci env:* | sort-object name'
+  displayName: 'Environment Variables'
