@@ -14,7 +14,10 @@ steps:
    Get-WmiObject win32_processor
    Get-WmiObject -Class Win32_LogicalDisk 
   displayName: 'Computer Info'
-  
+
+- powershell: 'Get-Module -ListAvailable'
+  displayName: 'Installed Modules'
+
 - powershell: 'gci -Recurse -Filter signtool.exe "C:\Program Files (x86)\" -ErrorAction SilentlyContinue'
   displayName: 'SignTool Location Program Files x86'
 
