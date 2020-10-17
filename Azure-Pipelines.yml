@@ -24,6 +24,9 @@ steps:
 - powershell: 'gci env:* | sort-object name'
   displayName: 'Environment Variables'
 
+- powershell: 'docker images --all'
+  displayName: 'List Docker Images'
+
 - powershell: 'gci -Recurse -Filter signtool.exe "C:\Program Files (x86)\" -ErrorAction SilentlyContinue'
   displayName: 'SignTool Location Program Files x86'
 
