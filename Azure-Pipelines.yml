@@ -10,11 +10,25 @@ pool:
 steps:
 - powershell: |
    Get-ComputerInfo
-   Get-WmiObject -Class Win32_ComputerSystem
-   Get-WmiObject win32_processor
-   Get-WmiObject -Class Win32_LogicalDisk 
   displayName: 'Computer Info'
-  
+
+- powershell: |
+   Get-WmiObject -Class Win32_ComputerSystem
+  displayName: 'Computer System'
+
+- powershell: |
+   Get-WmiObject win32_processor
+  displayName: 'Computer CPU'
+
+- powershell: |
+   Get-WmiObject -Class Win32_LogicalDisk 
+  displayName: 'Logical Disk'
+
+- powershell: |
+   [DateTime]::Now
+   [DateTime]::UtcNow
+  displayName: 'Current Time'
+
 - powershell: 'Get-Module -ListAvailable'
   displayName: 'Installed Modules'
 
