@@ -29,6 +29,12 @@ steps:
    [DateTime]::UtcNow
   displayName: 'Current Time'
 
+- powershell: 'dotnet --list-sdks'
+  displayName: 'Dotnet SDKs'
+  
+- powershell: 'dotnet --list-runtimes'
+  displayName: 'Dotnet Runtimes'
+  
 - powershell: 'Get-Module -ListAvailable'
   displayName: 'Installed Modules'
 
