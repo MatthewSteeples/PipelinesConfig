@@ -4,9 +4,16 @@ trigger:
     include:
     - '*'
 
+strategy:
+  matrix:
+    windows:
+      imageName: 'windows-latest'
+    vs2022:
+      imageName: 'windows-2022'
+
 pool:
-  vmImage: 'windows-latest'
-  
+  vmImage: $(imageName)
+
 steps:
 - powershell: |
    Get-ComputerInfo
