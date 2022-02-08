@@ -50,6 +50,9 @@ steps:
 
 - powershell: 'gci env:* | sort-object name'
   displayName: 'Environment Variables'
+  
+- powershell: '$env:Path -split ";"'
+  displayName: 'Path'
 
 - powershell: 'docker images --all'
   displayName: 'List Docker Images'
