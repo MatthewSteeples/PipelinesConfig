@@ -57,6 +57,12 @@ steps:
 - powershell: 'docker images --all'
   displayName: 'List Docker Images'
 
+- powershell: 'npm config list'
+  displayName: 'NPM Config'
+
+- powershell: 'npm cache ls'
+  displayName: 'NPM Cache'
+
 - powershell: 'gci -Recurse -Filter signtool.exe "C:\Program Files (x86)\" -ErrorAction SilentlyContinue'
   displayName: 'SignTool Location Program Files x86'
 
