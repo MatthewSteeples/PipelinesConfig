@@ -4,73 +4,76 @@ trigger:
     include:
     - '*'
 
-strategy:
-  matrix:
-    windows:
-      imageName: 'windows-2019'
-    vs2022:
-      imageName: 'windows-2022'
+jobs:
+- job: Build
+  timeoutInMinutes: 360
+  strategy:
+    matrix:
+      windows:
+        imageName: 'windows-2019'
+      vs2022:
+        imageName: 'windows-2022'
 
-pool:
-  vmImage: $(imageName)
+  pool:
+    vmImage: $(imageName)
 
-steps:
-- powershell: |
-   Get-ComputerInfo
-  displayName: 'Computer Info'
+  steps:
+  - powershell: |
+      Get-ComputerInfo
+    displayName: 'Computer Info'
 
-- powershell: |
-   Get-WmiObject -Class Win32_ComputerSystem
-  displayName: 'Computer System'
+  - powershell: |
+      Get-WmiObject -Class Win32_ComputerSystem
+    displayName: 'Computer System'
 
-- powershell: |
-   Get-WmiObject win32_processor
-  displayName: 'Computer CPU'
+  - powershell: |
+      Get-WmiObject win32_processor
+    displayName: 'Computer CPU'
 
-- powershell: |
-   Get-WmiObject -Class Win32_LogicalDisk 
-  displayName: 'Logical Disk'
+  - powershell: |
+      Get-WmiObject -Class Win32_LogicalDisk 
+    displayName: 'Logical Disk'
 
-- powershell: |
-   [DateTime]::Now
-   [DateTime]::UtcNow
-  displayName: 'Current Time'
+  - powershell: |
+      [DateTime]::Now
+      [DateTime]::UtcNow
+    displayName: 'Current Time'
 
-- powershell: 'dotnet --list-sdks'
-  displayName: 'Dotnet SDKs'
-  
-- powershell: 'dotnet --list-runtimes'
-  displayName: 'Dotnet Runtimes'
-  
-- powershell: 'Get-Module -ListAvailable'
-  displayName: 'Installed Modules'
+  - powershell: 'dotnet --list-sdks'
+    displayName: 'Dotnet SDKs'
+    
+  - powershell: 'dotnet --list-runtimes'
+    displayName: 'Dotnet Runtimes'
+    
+  - powershell: 'Get-Module -ListAvailable'
+    displayName: 'Installed Modules'
 
-- powershell: 'Get-WmiObject win32_product'
-  displayName: 'Installed Items'
+  - powershell: 'Get-WmiObject win32_product'
+    displayName: 'Installed Items'
 
-- powershell: 'gci env:* | sort-object name'
-  displayName: 'Environment Variables'
-  
-- powershell: '$env:Path -split ";"'
-  displayName: 'Path'
+  - powershell: 'gci env:* | sort-object name'
+    displayName: 'Environment Variables'
+    
+  - powershell: '$env:Path -split ";"'
+    displayName: 'Path'
 
-- powershell: 'docker images --all'
-  displayName: 'List Docker Images'
+  - powershell: 'docker images --all'
+    displayName: 'List Docker Images'
 
-- powershell: 'npm config list'
-  displayName: 'NPM Config'
+  - powershell: 'npm config list'
+    displayName: 'NPM Config'
 
-- powershell: 'npm cache ls'
-  displayName: 'NPM Cache'
+  - powershell: 'npm cache ls'
+    displayName: 'NPM Cache'
 
-- powershell: 'gci -Recurse -Filter signtool.exe "C:\Program Files (x86)\" -ErrorAction SilentlyContinue'
-  displayName: 'SignTool Location Program Files x86'
+  - powershell: 'gci -Recurse -Filter signtool.exe "C:\Program Files (x86)\" -ErrorAction SilentlyContinue'
+    displayName: 'SignTool Location Program Files x86'
 
-- powershell: 'gci -Recurse -Filter signtool.exe "C:\Program Files\" -ErrorAction SilentlyContinue'
-  displayName: 'SignTool Location Program Files'
+  - powershell: 'gci -Recurse -Filter signtool.exe "C:\Program Files\" -ErrorAction SilentlyContinue'
+    displayName: 'SignTool Location Program Files'
 
-- powershell: 'gci -Recurse -Filter signtool.exe "C:\hostedtoolcache\" -ErrorAction SilentlyContinue'
-  displayName: 'SignTool Location Hosted Tools'
+  - powershell: 'gci -Recurse -Filter signtool.exe "C:\hostedtoolcache\" -ErrorAction SilentlyContinue'
+    displayName: 'SignTool Location Hosted Tools'
 
-- powershell: 'gci -Recurse -Filter signtool.exe D:\ -ErrorAction SilentlyContinue'
-  displayName: 'SignTool Location D:'
+  - powershell: 'gci -Recurse -Filter signtool.exe D:\ -ErrorAction SilentlyContinue'
+    displayName: 'SignTool Location D:'
