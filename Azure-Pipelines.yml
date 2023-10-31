@@ -31,7 +31,7 @@ jobs:
     displayName: 'Computer CPU'
 
   - powershell: |
-      Get-WmiObject -Class Win32_LogicalDisk 
+      Get-WmiObject -Class Win32_LogicalDisk | format-table DeviceID,DriveType,ProviderName,FreeSpace,Size,VolumeName,FileSystem
     displayName: 'Logical Disk'
 
   - powershell: |
