@@ -36,6 +36,10 @@ steps:
    [DateTime]::UtcNow
   displayName: 'Current Time'
 
+- powershell: |
+   ipconfig
+  displayName: 'Network Info'
+
 - powershell: 'dotnet --list-sdks'
   displayName: 'Dotnet SDKs'
   
