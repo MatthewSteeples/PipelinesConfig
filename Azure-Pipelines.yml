@@ -7,8 +7,8 @@ trigger:
 pool:
   name: 'ManagedDefault'
   demands:
-  - ImageOverride -equals ubuntu-22.04
-  
+  - ImageOverride -equals windows-2022
+
 steps:
 - powershell: |
    Get-ComputerInfo
