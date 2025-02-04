@@ -4,16 +4,11 @@ trigger:
     include:
     - '*'
 
-strategy:
-  matrix:
-    windows:
-      imageName: 'windows-2019'
-    vs2022:
-      imageName: 'windows-2022'
-
 pool:
-  vmImage: $(imageName)
-
+  name: 'ManagedDefault'
+  demands:
+  - ImageOverride -equals ubuntu-22.04
+  
 steps:
 - powershell: |
    Get-ComputerInfo
