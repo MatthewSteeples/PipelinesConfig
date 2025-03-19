@@ -10,6 +10,8 @@ strategy:
       imageName: 'windows-2019'
     vs2022:
       imageName: 'windows-2022'
+    Win2025:
+      imageName: 'windows-2025'
 
 pool:
   vmImage: $(imageName)
